@@ -8,47 +8,50 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import type { Todo } from "@/types/Todo";
 
-export interface Todo {
-  id: number;
-  type: string;
-  title: string;
-  completed: boolean;
-}
 
 interface todosListInterface {
   todosList: Todo[];
+  setTodosList: React.Dispatch<React.SetStateAction<Todo[]>>
 }
 import { CheckboxComponent } from "../CheckboxComponent/CheckboxComponent";
+import { useTodo } from "@/contexts/TodoContext";
 
-export function TableComponent({ todosList }: todosListInterface) {
+export function TodoTableComponent() {
+
+    const { todos, toggleTodo, removeTodo } = useTodo();
+  
+
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+    <Table className="centered-table">
+      <TableCaption className="text-black font-bold">To do's</TableCaption>
       <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]"></TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>To do's</TableHead>
+        <TableRow >
+          <TableHead className="w-[100px] text-black py-3 px-4"></TableHead>
+          <TableHead className="w-[300px] text-black py-3 px-4">Title</TableHead>
+          <TableHead className="w-[300px] text-black py-3 px-4">Type</TableHead>
+          <TableHead className="w-[300px] text-black py-3 px-4">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {todosList.map((todo) => (
-          <TableRow key={todo.id}>
+        {todos.map((todo, index) => (
+          <TableRow key={index}>
             <TableCell className="font-medium">
-              <CheckboxComponent type="Estudo" />
+              <CheckboxComponent 
+              todo={todo}
+              />
             </TableCell>
-            <TableCell>{todo.type}</TableCell>
-            <TableCell>{todo.title}</TableCell>
-            <TableCell className="text-right">{todo.completed}</TableCell>
+            <TableCell className="text-black py-3 px-4">{todo.title}</TableCell>
+            <TableCell className="text-black py-3 px-4">{todo.type}</TableCell>
+            <TableCell className="text-black py-3 px-4">
+                {todo.completed ? "Done" : "Not Done"}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
+        
       </TableFooter>
     </Table>
   );

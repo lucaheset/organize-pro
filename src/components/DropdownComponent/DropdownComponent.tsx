@@ -1,64 +1,56 @@
-"use client";
-
-import * as React from "react";
-import type { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-
-import { Button } from "@/components/ui/button";
+import React from "react";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
+  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu";
-import type { Todo } from "../Table/Table";
-import type { Dispatch, SetStateAction } from "react";
-
-type Checked = DropdownMenuCheckboxItemProps["checked"];
+import { Button } from "@/components/ui/button";
 
 type DropdownComponentProps = {
-  setDropdownValue: Dispatch<SetStateAction<string[]>>
-}
+  dropdownValue: string;
+  setDropdownValue: React.Dispatch<React.SetStateAction<string>>;
+};
 
 export function DropdownComponent({
+  dropdownValue,
   setDropdownValue,
 }: DropdownComponentProps) {
-  {
-    const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
-    const [showActivityBar, setShowActivityBar] =
-      React.useState<Checked>(false);
-    const [showPanel, setShowPanel] = React.useState<Checked>(false);
+  const handleSelect = (value: string) => {
+    setDropdownValue((prev) => (prev === value ? "" : value));
+  };
 
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">Category</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
-          <DropdownMenuLabel>Categories</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuCheckboxItem
-            checked={showStatusBar}
-            onCheckedChange={setShowStatusBar}
-          >
-            Study
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={showActivityBar}
-            onCheckedChange={setShowActivityBar}
-            disabled
-          >
-            Work
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={showPanel}
-            onCheckedChange={setShowPanel}
-          >
-            Others
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  }
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="secondary">
+          {dropdownValue || "Select Category"}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Categories</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem
+          checked={dropdownValue === "Study"}
+          onCheckedChange={() => handleSelect("Study")}
+        >
+          Study
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem
+          checked={dropdownValue === "Work"}
+          onCheckedChange={() => handleSelect("Work")}
+        >
+          Work
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem
+          checked={dropdownValue === "Others"}
+          onCheckedChange={() => handleSelect("Others")}
+        >
+          Others
+        </DropdownMenuCheckboxItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 }
