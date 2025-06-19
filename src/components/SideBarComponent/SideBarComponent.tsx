@@ -45,10 +45,13 @@ const items = [
 export function SideBarComponent() {
   return (
     <Sidebar>
-      <SidebarContent>
+      <SidebarContent className="bg-gray-950 text-white border-1 border-gray-800">
         <SidebarGroup>
-          <div className="flex justify-between">
-          <SidebarGroupLabel>Application </SidebarGroupLabel>
+          <div className="flex justify-center items-center p-10  border-2 border-gray-800">
+            <h1 className="font-bold text-lg">OrganizaPro</h1>
+          </div>
+          <div className="flex justify-between border-2 border-gray-800">
+          <SidebarGroupLabel className="">Application </SidebarGroupLabel>
           <SidebarTrigger></SidebarTrigger>
           </div>
           <SidebarGroupContent>
