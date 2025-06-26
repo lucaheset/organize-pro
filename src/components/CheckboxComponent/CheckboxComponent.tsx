@@ -19,7 +19,7 @@ export function CheckboxComponent({ todo }: CheckboxComponentProps) {
         id={`todo-${todo.id}`}
         onCheckedChange={handleCheck}
         checked={todo.completed}
-        className="border-black"
+        className="border-gray-200"
       />
       <div className="grid gap-1.5 leading-none">
         <label

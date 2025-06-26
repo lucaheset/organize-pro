@@ -1,5 +1,5 @@
-import { TodoTableComponent } from "@/components/Table/Table";
-import TodoList from "@/components/TodoList/TodoList";
+import { TodoTableComponent } from "@/components/TableComponent/TableComponent";
+import TodoList from "@/components/TodoListComponent/TodoListComponent";
 import type { Todo } from "@/types/Todo";
 import React, { useState } from "react";
 

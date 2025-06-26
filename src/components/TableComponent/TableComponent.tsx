@@ -25,13 +25,13 @@ export function TodoTableComponent() {
 
   return (
     <Table className="centered-table">
-      <TableCaption className="text-black font-bold">To do's</TableCaption>
+      <TableCaption className="text-gray-200 font-bold">To do's</TableCaption>
       <TableHeader>
         <TableRow >
-          <TableHead className="w-[100px] text-black py-3 px-4"></TableHead>
-          <TableHead className="w-[300px] text-black py-3 px-4">Title</TableHead>
-          <TableHead className="w-[300px] text-black py-3 px-4">Type</TableHead>
-          <TableHead className="w-[300px] text-black py-3 px-4">Status</TableHead>
+          <TableHead className="w-[100px] text-gray-200 py-3 px-4"></TableHead>
+          <TableHead className="w-[300px] text-gray-200 py-3 px-4">Title</TableHead>
+          <TableHead className="w-[300px] text-gray-200 py-3 px-4">Type</TableHead>
+          <TableHead className="w-[300px] text-gray-200 py-3 px-4">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -42,9 +42,9 @@ export function TodoTableComponent() {
               todo={todo}
               />
             </TableCell>
-            <TableCell className="text-black py-3 px-4">{todo.title}</TableCell>
-            <TableCell className="text-black py-3 px-4">{todo.type}</TableCell>
-            <TableCell className="text-black py-3 px-4">
+            <TableCell className="text-gray-200 py-3 px-4">{todo.title}</TableCell>
+            <TableCell className="text-gray-200 py-3 px-4">{todo.type}</TableCell>
+            <TableCell className="text-gray-200 py-3 px-4">
                 {todo.completed ? "Done" : "Not Done"}
             </TableCell>
           </TableRow>

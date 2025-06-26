@@ -1,6 +1,6 @@
 import React, { useState, type Dispatch, type SetStateAction } from "react";
 import { DropdownComponent } from "../DropdownComponent/DropdownComponent";
-import { TodoTableComponent} from "../Table/Table";
+import { TodoTableComponent } from "../TableComponent/TableComponent";
 import { Button } from "../ui/button";
 import { useTodo } from "@/contexts/TodoContext";
 import type { Todo } from "@/types/Todo";
@@ -29,9 +29,8 @@ const TodoList = () => {
 
     const valorInput = inputElement.value;
 
-    addTodo(valorInput, dropdownValue)
-
-    }
+    addTodo(valorInput, dropdownValue);
+  };
 
   return (
     <div className="flex gap-5 flex-col">
@@ -66,17 +65,17 @@ const TodoList = () => {
 export default TodoList;
 
 export const TodoListCard = () => {
-
-
   return (
-    <Card className="bg-gray-900 border-0">
+    <Card className="bg-gray-900 border-0 text-gray-200 min-h-50 min-w-30">
       <CardHeader>
         <CardTitle>To do's</CardTitle>
         <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
+        <CardAction>
+          <Button className="bg-blue-500 text-gray-100 cursor-pointer">Action</Button>
+        </CardAction>
       </CardHeader>
       <CardContent>
-        <TodoTableComponent/>
+        <TodoTableComponent />
       </CardContent>
       <CardFooter>
         <p>Card Footer</p>
@@ -84,4 +83,3 @@ export const TodoListCard = () => {
     </Card>
   );
 };
-

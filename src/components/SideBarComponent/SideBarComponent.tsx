@@ -1,17 +1,24 @@
 import React from "react";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
-
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
- 
 import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarProvider,
+  SidebarTrigger,
+} from "../ui/sidebar";
 
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+
+import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
- 
+} from "@/components/ui/sidebar";
+
 // Menu items.
 const items = [
   {
@@ -39,20 +46,20 @@ const items = [
     url: "#",
     icon: Settings,
   },
-]
- 
+];
 
 export function SideBarComponent() {
   return (
     <Sidebar>
-      <SidebarContent className="bg-gray-950 text-white border-1 border-gray-800">
+      <SidebarContent className="bg-gray-950 text-white border-r-1 border-gray-800">
         <SidebarGroup>
-          <div className="flex justify-center items-center p-10  border-2 border-gray-800">
+          <div className="flex justify-end">
+            <SidebarTrigger></SidebarTrigger>
+          </div>
+          <div className="flex justify-center items-center p-5 border-b-2 border-gray-800">
             <h1 className="font-bold text-lg">OrganizaPro</h1>
           </div>
-          <div className="flex justify-between border-2 border-gray-800">
-          <SidebarGroupLabel className="">Application </SidebarGroupLabel>
-          <SidebarTrigger></SidebarTrigger>
+          <div className="flex justify-between">
           </div>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -71,5 +78,5 @@ export function SideBarComponent() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
