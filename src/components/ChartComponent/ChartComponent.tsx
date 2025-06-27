@@ -59,54 +59,53 @@ export function ChartComponent() {
           </div>
         </CardAction>
       </CardHeader>
-<CardContent className="overflow-hidden">
-  <div className="w-full max-h-[260px] h-full">
-    <ChartContainer config={chartConfig}>
-      <ResponsiveContainer width="100%" aspect={2.5}>
-        <LineChart
-          data={chartData}
-          margin={{ top: 16, left: 15, right: 15, bottom: 40 }}
-        >
-          <CartesianGrid vertical={false} stroke="#374151" />
-          <XAxis
-            dataKey="month"
-            tickLine={false}
-            axisLine={false}
-            tickMargin={6}
-            tickFormatter={(value) => String(value).slice(0, 3)}
-            tick={{ fill: "#9ca3af" }}
-          />
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent indicator="line" />}
-            contentStyle={{
-              backgroundColor: "#1f2937",
-              border: "1px solid #374151",
-              borderRadius: "6px",
-              color: "#ffffff",
-            }}
-          />
-          <Line
-            dataKey="desktop"
-            type="natural"
-            stroke="#3b82f6"
-            strokeWidth={2}
-            dot={{ fill: "#3b82f6" }}
-            activeDot={{ r: 6, fill: "#3b82f6" }}
-          >
-            <LabelList
-              position="top"
-              offset={12}
-              className="fill-gray-200"
-              fontSize={12}
-            />
-          </Line>
-        </LineChart>
-      </ResponsiveContainer>
-    </ChartContainer>
-  </div>
-</CardContent>
-
+      <CardContent className="overflow-hidden">
+        <div className="w-full max-h-[260px] h-full">
+          <ChartContainer config={chartConfig}>
+            <ResponsiveContainer width="100%" aspect={2.5}>
+              <LineChart
+                data={chartData}
+                margin={{ top: 16, left: 15, right: 15, bottom: 40 }}
+              >
+                <CartesianGrid vertical={false} stroke="#374151" />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={6}
+                  tickFormatter={(value) => String(value).slice(0, 3)}
+                  tick={{ fill: "#9ca3af" }}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent indicator="line" />}
+                  contentStyle={{
+                    backgroundColor: "#1f2937",
+                    border: "1px solid #374151",
+                    borderRadius: "6px",
+                    color: "#ffffff",
+                  }}
+                />
+                <Line
+                  dataKey="desktop"
+                  type="natural"
+                  stroke="#3b82f6"
+                  strokeWidth={2}
+                  dot={{ fill: "#3b82f6" }}
+                  activeDot={{ r: 6, fill: "#3b82f6" }}
+                >
+                  <LabelList
+                    position="top"
+                    offset={12}
+                    className="fill-gray-200"
+                    fontSize={12}
+                  />
+                </Line>
+              </LineChart>
+            </ResponsiveContainer>
+          </ChartContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 }
