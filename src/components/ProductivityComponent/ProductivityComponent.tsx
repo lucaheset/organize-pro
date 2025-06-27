@@ -24,7 +24,7 @@ const ProductivityComponent = () => {
 
   
   return (
-    <Card className="bg-gray-900 border-0 text-gray-200 min-h-75 min-w-30">
+    <Card className="w-full h-full bg-gray-900 border-0 text-gray-200 min-h-75 min-w-30">
       <CardHeader>
       <CardTitle>Productivity</CardTitle>
       <CardDescription>This week</CardDescription>

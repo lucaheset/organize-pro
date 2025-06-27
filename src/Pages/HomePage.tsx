@@ -4,7 +4,6 @@ import ProductivityComponent from "@/components/ProductivityComponent/Productivi
 import StreakComponent from "@/components/StreakComponent/StreakComponent";
 import { TodoListCard } from "@/components/TodoListComponent/TodoListComponent";
 
-
 const HomePage = () => {
   return (
     <div className="w-full">
@@ -15,27 +14,21 @@ const HomePage = () => {
           Foco no progresso, não na perfeição.
         </legend>
       </div>
-      <div className="bg-gray-950 p-5 rounded-lg flex-col flex gap-5">
-        <div className="flex flex-row gap-5">
-          <div className="w-1/3">
-            <ChartComponent />
-          </div>
-          <div className="w-1/3">
-            <ProductivityComponent />
-          </div>
-          <div className="w-1/3">
-            <StreakComponent />
-          </div>
+      <div className="bg-gray-950 p-5 rounded-lg grid grid-cols-4 gap-4">
+        <div className="col-span-1">
+          <ChartComponent />
         </div>
-        <div className="flex min-w-full">
-          <div className="flex min-w-full flex-row gap-5">
-            <div className="w-2/3">
-              <TodoListCard />
-            </div>
-            <div className="w-1/3">
-              <EventsComponents />
-            </div>
-          </div>
+        <div className="col-span-1">
+          <ProductivityComponent />
+        </div>
+        <div className="col-span-1">          
+          <StreakComponent />
+        </div>
+        <div className="col-start-4 row-span-2">
+          <EventsComponents />
+        </div>
+        <div className="col-span-3 row-start-2">
+          <TodoListCard />
         </div>
       </div>
     </div>

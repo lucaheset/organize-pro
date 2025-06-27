@@ -78,7 +78,7 @@ export const TodoListCard = () => {
 
   return (
     <>
-      <Card className="bg-gray-900 border-0 text-gray-200 min-h-50 min-w-30">
+      <Card className="h-full w-full bg-gray-900 border-0 text-gray-200 min-h-50 min-w-30">
         <CardHeader>
           <CardTitle>To do's</CardTitle>
           <CardDescription>Card Description</CardDescription>

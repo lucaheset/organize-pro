@@ -3,8 +3,8 @@ import React from 'react'
 
 const EventsComponents = () => {
   return (
-          <div>
-            <div className="bg-gray-900 rounded-2xl shadow-xl border border-gray-800">
+          <div className="w-full">
+            <div className="h-full bg-gray-900 rounded-2xl shadow-xl border border-gray-800">
               <div className="p-6 border-b border-gray-800">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-white">Próximos Eventos</h2>

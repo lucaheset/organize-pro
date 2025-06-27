@@ -47,7 +47,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 export function ChartComponent() {
   return (
-    <Card className="bg-gray-900 max-w-225 h-75 min-w-100 overflow-hidden min-h-75">
+    <Card className="h-full bg-gray-900 min-w-[350px] min-h-[300px] overflow-hidden w-full">
       <CardHeader>
         <CardTitle className="text-gray-200">Line Chart - Label</CardTitle>
         <CardDescription className="text-muted-foreground">
@@ -59,20 +59,20 @@ export function ChartComponent() {
           </div>
         </CardAction>
       </CardHeader>
-      <CardContent className="overflow-hidden">
-        <div className="w-full max-h-[260px] h-full">
-          <ChartContainer config={chartConfig}>
-            <ResponsiveContainer width="100%" aspect={2.5}>
+      <CardContent className="overflow-visible flex justify-center items-center">
+        <div className="w-full h-[100px] flex justify-center items-center">
+          <ChartContainer config={chartConfig} className="min-h-[200px] max-h-[250px]">
+            <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={chartData}
-                margin={{ top: 16, left: 15, right: 15, bottom: 40 }}
+                margin={{ top: 70, left: 15, right: 15, bottom: 10 }}
               >
                 <CartesianGrid vertical={false} stroke="#374151" />
                 <XAxis
                   dataKey="month"
                   tickLine={false}
                   axisLine={false}
-                  tickMargin={6}
+                  tickMargin={16}
                   tickFormatter={(value) => String(value).slice(0, 3)}
                   tick={{ fill: "#9ca3af" }}
                 />

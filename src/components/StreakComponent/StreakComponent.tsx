@@ -3,7 +3,7 @@ import React from "react";
 
 const StreakComponent = () => {
   return (
-    <div className="bg-gray-900 rounded-2xl shadow-xl border border-gray-800 p-6 hover:shadow-2xl hover:border-gray-700 transition-all duration-300">
+    <div className="w-full h-full bg-gray-900 rounded-2xl shadow-xl border border-gray-800 p-6 hover:shadow-2xl hover:border-gray-700 transition-all duration-300 flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-lg font-semibold text-white">
@@ -26,7 +26,7 @@ const StreakComponent = () => {
       </div>
 
       {/* Mini calendário de hábitos */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-1 flex-grow">
         {Array.from({ length: 14 }, (_, i) => (
           <div
             key={i}

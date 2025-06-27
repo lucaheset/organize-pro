@@ -11,6 +11,6 @@ export const saveTodos = (todos: any[]) => {
   try {
     localStorage.setItem("todos", JSON.stringify(todos));
   } catch {
-    // erro ao salvar
+    console.error("Failed to save todos to localStorage");
   }
 };
