@@ -1,10 +1,7 @@
-import React, { useState, type Dispatch, type SetStateAction } from "react";
-import { DropdownComponent } from "../DropdownComponent/DropdownComponent";
-import { TodoTableComponent } from "../TableComponent/TableComponent";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useTodo } from "@/contexts/TodoContext";
-import type { Todo } from "@/types/Todo";
-
+import { DropdownComponent } from "../DropdownComponent/DropdownComponent";
 import {
   Card,
   CardHeader,
@@ -14,72 +11,97 @@ import {
   CardContent,
   CardFooter,
 } from "../ui/card";
+import { TodoTableComponent } from "../TableComponent/TableComponent";
 
-const TodoList = () => {
-  const [dropdownValue, setDropdownValue] = useState("");
-  const { todos, addTodo, toggleTodo, removeTodo } = useTodo();
+// ModalAddTodo Component
+const ModalAddTodo = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
+  const { addTodo } = useTodo();
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const form = e.target as HTMLFormElement;
-    const inputElement = form.elements.namedItem(
-      "inputTodo"
-    ) as HTMLInputElement;
-
-    const valorInput = inputElement.value;
-
-    addTodo(valorInput, dropdownValue);
+    addTodo(title, type);
+    setTitle("");
+    setType("");
+    onClose();
   };
 
-  return (
-    <div className="flex gap-5 flex-col">
-      <h2 className="text-3xl font-semibold">To-do List</h2>
+  if (!open) return null;
 
-      <div className="bg-[#2C2C2E] p-4 rounded-xl shadow-lg">
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+      <div className="bg-[#232323] p-6 rounded-lg w-full max-w-md shadow-xl">
+        <h3 className="text-xl font-semibold mb-4">Add New Todo</h3>
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-row  items-center mt-2 gap-2">
-            <input
-              className="w-full bg-[#121212] border border-[#2A2A2A] p-2 text-white rounded-md max-w-125"
-              name="inputTodo"
-              placeholder="Task Title"
-            />
-            <div className="cursor-pointer">
-              <DropdownComponent
-                dropdownValue={dropdownValue}
-                setDropdownValue={setDropdownValue}
-              />
-            </div>
+          <input
+            className="w-full mb-3 p-2 rounded bg-[#121212] border border-[#2A2A2A] text-white"
+            placeholder="Title of todo"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <DropdownComponent
+            dropdownValue={type}
+            setDropdownValue={setType}
+          />
+          <div className="flex justify-end gap-2 mt-4">
+            <Button
+              type="button"
+              className="bg-gray-600 text-white"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="bg-blue-500 text-white"
+              disabled={!title || !type}
+            >
+              Add
+            </Button>
           </div>
-          <Button
-            className="mt-4 cursor-pointer bg-secondary text-black py-2 px-4 rounded-lg min-w-30"
-            type="submit"
-          >
-            Add
-          </Button>
         </form>
       </div>
     </div>
   );
 };
-export default TodoList;
 
 export const TodoListCard = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    <Card className="bg-gray-900 border-0 text-gray-200 min-h-50 min-w-30">
-      <CardHeader>
-        <CardTitle>To do's</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>
-          <Button className="bg-blue-500 text-gray-100 cursor-pointer">Action</Button>
-        </CardAction>
-      </CardHeader>
-      <CardContent>
-        <TodoTableComponent />
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
+    <>
+      <Card className="bg-gray-900 border-0 text-gray-200 min-h-50 min-w-30">
+        <CardHeader>
+          <CardTitle>To do's</CardTitle>
+          <CardDescription>Card Description</CardDescription>
+          <CardAction>
+            <Button
+              className="bg-blue-500 text-gray-100 cursor-pointer"
+              onClick={() => setOpenModal(true)}
+            >
+              <i className="fa fa-plus mr-2" aria-hidden="true"></i>
+              Add
+            </Button>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <TodoTableComponent />
+        </CardContent>
+        <CardFooter>
+          <p>Card Footer</p>
+        </CardFooter>
+      </Card>
+      <ModalAddTodo open={openModal} onClose={() => setOpenModal(false)} />
+    </>
   );
 };
+
+export default TodoListCard;

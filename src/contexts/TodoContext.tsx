@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState} from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 import type { ReactNode } from "react"
 import type { Todo } from "@/types/Todo"
+import { loadTodos, saveTodos } from "@/utils/localStorage"
 
 type TodoContextType = {
   todos: Todo[]
@@ -12,14 +13,11 @@ type TodoContextType = {
 const TodoContext = createContext<TodoContextType | undefined>(undefined)
 
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
-  const [todos, setTodos] = useState<Todo[]>([
-    {
-        title: "Testing",
-        id: 0,
-        type: "Work",
-        completed: false
-    }
-  ])
+  const [todos, setTodos] = useState<Todo[]>(() => loadTodos())
+
+  useEffect(() => {
+    saveTodos(todos)
+  }, [todos])
 
   const addTodo = (title: string, type: string) => {
     const newTodo: Todo = {
