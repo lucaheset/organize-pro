@@ -13,6 +13,9 @@ import {
 } from "../ui/card";
 import { TodoTableComponent } from "../TableComponent/TableComponent";
 
+
+
+
 // ModalAddTodo Component
 const ModalAddTodo = ({
   open,
@@ -27,7 +30,7 @@ const ModalAddTodo = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addTodo(title, type);
+    addTodo(title, type, ""); // Assuming priority is not used in this modal
     setTitle("");
     setType("");
     onClose();
@@ -49,8 +52,7 @@ const ModalAddTodo = ({
           />
           <DropdownComponent
             dropdownValue={type}
-            setDropdownValue={setType}
-          />
+            setDropdownValue={setType} label={""} options={[]}          />
           <div className="flex justify-end gap-2 mt-4">
             <Button
               type="button"
@@ -80,8 +82,6 @@ export const TodoListCard = () => {
     <>
       <Card className="h-full w-full bg-gray-900 border-0 text-gray-200 min-h-50 min-w-30">
         <CardHeader>
-          <CardTitle>To do's</CardTitle>
-          <CardDescription>Card Description</CardDescription>
           <CardAction>
             <Button
               className="bg-blue-500 text-gray-100 cursor-pointer"
@@ -95,9 +95,6 @@ export const TodoListCard = () => {
         <CardContent>
           <TodoTableComponent />
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
       <ModalAddTodo open={openModal} onClose={() => setOpenModal(false)} />
     </>
