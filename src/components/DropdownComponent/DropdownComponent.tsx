@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 type DropdownComponentProps = {
   dropdownValue: string;
   setDropdownValue: React.Dispatch<React.SetStateAction<string>>;
+  label: string;
+  options: { value: string; label: string }[];
 };
 
 export function DropdownComponent({
