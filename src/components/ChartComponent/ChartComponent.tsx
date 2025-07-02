@@ -174,12 +174,12 @@ export function ChartComponent() {
         <div className="w-full h-[100px] flex justify-center items-center">
           <ChartContainer
             config={chartConfig}
-            className="min-h-[200px] max-h-[250px]"
+            className="min-h-[250px] max-h-[250px]"
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={chartDataState}
-                margin={{ top: 70, left: 15, right: 15, bottom: 10 }}
+                margin={{ top: 100, left: 15, right: 15, bottom: 10 }}
               >
                 <CartesianGrid vertical={false} stroke="#374151" />
                 <XAxis

@@ -57,28 +57,28 @@ const ProductivityComponent = () => {
           strokeWidth="8"
           fill="none"
           strokeDasharray={2 * Math.PI * 40}
-          strokeDashoffset={2 * Math.PI * 40 * (1 - percent / 100)}
+          strokeDashoffset={2 * Math.PI * 40 * (1 - (isNaN(percent) ? 0 : percent / 100))}
           strokeLinecap="round"
           className="drop-shadow-lg"
           style={{
-            transition: "stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)",
+        transition: "stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)",
           }}
           />
           <defs>
           <linearGradient id="productivityGradient">
-            <stop
-            offset="0%"
-            stopColor={`rgb(${255 - Math.round((percent / 100) * 255)}, ${Math.round((percent / 100) * 185)}, 129)`}
-            />
-            <stop
-            offset="100%"
-            stopColor={`rgb(${255 - Math.round((percent / 100) * 255)}, ${Math.round((percent / 100) * 184)}, 166)`}
-            />
+        <stop
+        offset="0%"
+        stopColor={`rgb(${255 - Math.round(((isNaN(percent) ? 0 : percent) / 100) * 255)}, ${Math.round(((isNaN(percent) ? 0 : percent) / 100) * 185)}, 129)`}
+        />
+        <stop
+        offset="100%"
+        stopColor={`rgb(${255 - Math.round(((isNaN(percent) ? 0 : percent) / 100) * 255)}, ${Math.round(((isNaN(percent) ? 0 : percent) / 100) * 184)}, 166)`}
+        />
           </linearGradient>
           </defs>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-bold text-white">{percent.toFixed(0)}%</span>
+          <span className="text-2xl font-bold text-white">{isNaN(percent) ? 0 : percent.toFixed(0)}%</span>
         </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ const ProductivityComponent = () => {
       <div className="text-center">
         <p className="text-emerald-400 text-sm flex items-center justify-center">
         <TrendingUp className="w-4 h-4 mr-1" />
-        +5% esta semana
+        +5% this week
         </p>
         <p className="text-gray-400 text-xs mt-1">
         {todoList.filter((todo: Todo) => todo.completed).length} of {todoList.length} tasks completed.
