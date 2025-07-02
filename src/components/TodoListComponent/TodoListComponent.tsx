@@ -13,10 +13,6 @@ import {
 } from "../ui/card";
 import { TodoTableComponent } from "../TableComponent/TableComponent";
 
-
-
-
-// ModalAddTodo Component
 const ModalAddTodo = ({
   open,
   onClose,
@@ -30,7 +26,7 @@ const ModalAddTodo = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addTodo(title, type, ""); // Assuming priority is not used in this modal
+    addTodo(title, type, "");
     setTitle("");
     setType("");
     onClose();
@@ -39,8 +35,11 @@ const ModalAddTodo = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-      <div className="bg-[#232323] p-6 rounded-lg w-full max-w-md shadow-xl">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 transition-colors duration-300"
+      style={{ backdropFilter: "blur(2px)" }}
+    >
+      <div className="bg-[#232323] p-6 rounded-lg w-full max-w-md shadow-xl transform transition-all duration-300 scale-100 opacity-100 animate-fade-in">
         <h3 className="text-xl font-semibold mb-4">Add New Todo</h3>
         <form onSubmit={handleSubmit}>
           <input
@@ -52,7 +51,10 @@ const ModalAddTodo = ({
           />
           <DropdownComponent
             dropdownValue={type}
-            setDropdownValue={setType} label={""} options={[]}          />
+            setDropdownValue={setType}
+            label={""}
+            options={[]}
+          />
           <div className="flex justify-end gap-2 mt-4">
             <Button
               type="button"
@@ -71,6 +73,17 @@ const ModalAddTodo = ({
           </div>
         </form>
       </div>
+      <style>
+        {`
+          @keyframes fade-in {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+          }
+          .animate-fade-in {
+            animation: fade-in 0.3s ease;
+          }
+        `}
+      </style>
     </div>
   );
 };
