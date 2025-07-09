@@ -2,6 +2,8 @@
 
 OrganizePro is a modern web application designed to boost your productivity. It allows you to manage tasks, track habits, visualize expenses, and see upcoming events — all in an intuitive dashboard.
 
+Preview:
+![{1DF3F6D4-F8E8-4891-A9C2-766A56CD11FF}](https://github.com/user-attachments/assets/59fd095c-d250-429c-b4c7-cf87af777188)
 
 
 ## 🚀 Features
