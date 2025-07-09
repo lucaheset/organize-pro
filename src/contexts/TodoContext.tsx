@@ -5,7 +5,7 @@ import { loadTodos, saveTodos } from "@/utils/localStorage"
 
 type TodoContextType = {
   todos: Todo[]
-  addTodo: (title: string, type: string, priority: string) => void
+  addTodo: (title: string, type: string, priority: string, time: string) => void
   toggleTodo: (id: number) => void
   removeTodo: (id: number) => void
 }
@@ -19,13 +19,13 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     saveTodos(todos)
   }, [todos])
 
-  const addTodo = (title: string, type: string, priority: string) => {
+  const addTodo = (title: string, type: string, priority: string, time: string) => {
     const newTodo: Todo = {
       id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
       title,
       type,
       completed: false,
-      time: "",
+      time,
       priority,
     }
     setTodos((prev) => [...prev, newTodo])

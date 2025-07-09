@@ -23,12 +23,16 @@ const ModalAddTodo = ({
   const { addTodo } = useTodo();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
+  const [priority, setPriority] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addTodo(title, type, "");
+    const now = new Date();
+    const createdAt = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")} ${now.getDate().toString().padStart(2, "0")}/${(now.getMonth() + 1).toString().padStart(2, "0")}/${now.getFullYear().toString().slice(-2)}`;
+    addTodo(title, type, priority, createdAt);
     setTitle("");
     setType("");
+    setPriority("");
     onClose();
   };
 
@@ -41,7 +45,17 @@ const ModalAddTodo = ({
     >
       <div className="bg-[#232323] p-6 rounded-lg w-full max-w-md shadow-xl transform transition-all duration-300 scale-100 opacity-100 animate-fade-in">
         <h3 className="text-xl font-semibold mb-4">Add New Todo</h3>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const createdAt = new Date().toISOString();
+            addTodo(title, type, priority, createdAt);
+            setTitle("");
+            setType("");
+            setPriority("");
+            onClose();
+          }}
+        >
           <input
             className="w-full mb-3 p-2 rounded bg-[#121212] border border-[#2A2A2A] text-white"
             placeholder="Title of todo"
@@ -52,21 +66,36 @@ const ModalAddTodo = ({
           <DropdownComponent
             dropdownValue={type}
             setDropdownValue={setType}
-            label={""}
-            options={[]}
+            label={"Type"}
+            options={[
+              { label: "Work", value: "work" },
+              { label: "Personal", value: "personal" },
+              { label: "Other", value: "other" },
+            ]}
+          />
+          <DropdownComponent
+          
+            dropdownValue={priority}
+            setDropdownValue={setPriority}
+            label={"Priority"}
+            options={[
+              { label: "Low", value: "low" },
+              { label: "Medium", value: "medium" },
+              { label: "High", value: "high" },
+            ]}
           />
           <div className="flex justify-end gap-2 mt-4">
             <Button
               type="button"
-              className="bg-gray-600 text-white"
+              className="bg-gray-600 text-white cursor-pointer"
               onClick={onClose}
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="bg-blue-500 text-white"
-              disabled={!title || !type}
+              className="bg-blue-500 text-white cursor-pointer"
+              disabled={!title || !type || !priority}
             >
               Add
             </Button>

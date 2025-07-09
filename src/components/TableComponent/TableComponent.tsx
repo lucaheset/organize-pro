@@ -75,15 +75,15 @@ export function TodoTableComponent() {
                       {todo.type}
                     </span>
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      todo.priority === 'alta'
+                      todo.priority === 'high'
                         ? 'bg-red-900/50 text-red-400 border border-red-800'
-                        : todo.priority === 'média'
+                        : todo.priority === 'medium'
                         ? 'bg-orange-900/50 text-orange-400 border border-orange-800'
                         : 'bg-gray-800 text-gray-400 border border-gray-700'
                     }`}>
-                      {todo.priority === 'alta'
+                      {todo.priority === 'high'
                         ? 'high'
-                        : todo.priority === 'média'
+                        : todo.priority === 'medium'
                         ? 'medium'
                         : 'low'}
                     </span>

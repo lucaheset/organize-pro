@@ -58,7 +58,7 @@ export function SideBarComponent() {
               <span className="text-2xl font-bold text-white">O</span>
             </div>
             <div>
-              <h1 className="font-bold text-lg text-white">OrganizaPro</h1>
+              <h1 className="font-bold text-lg text-white">OrganizePro</h1>
               <p className="text-gray-400 text-xs">Your productivity</p>
             </div>
           </div>

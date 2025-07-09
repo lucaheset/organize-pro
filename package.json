@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/gapi": "^0.0.47",
+    "@types/gapi.auth2": "^0.0.61",
     "@types/node": "^22.15.23",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",

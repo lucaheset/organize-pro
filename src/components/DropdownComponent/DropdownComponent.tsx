@@ -19,6 +19,8 @@ type DropdownComponentProps = {
 export function DropdownComponent({
   dropdownValue,
   setDropdownValue,
+  label,
+  options,
 }: DropdownComponentProps) {
   const handleSelect = (value: string) => {
     setDropdownValue((prev) => (prev === value ? "" : value));
@@ -26,32 +28,25 @@ export function DropdownComponent({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="cursor-pointer">
         <Button variant="secondary">
-          {dropdownValue || "Select Category"}
+          {dropdownValue
+            ? options.find((option) => option.value === dropdownValue)?.label
+            : label}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Categories</DropdownMenuLabel>
+        <DropdownMenuLabel>{label}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem
-          checked={dropdownValue === "Study"}
-          onCheckedChange={() => handleSelect("Study")}
-        >
-          Study
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={dropdownValue === "Work"}
-          onCheckedChange={() => handleSelect("Work")}
-        >
-          Work
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={dropdownValue === "Others"}
-          onCheckedChange={() => handleSelect("Others")}
-        >
-          Others
-        </DropdownMenuCheckboxItem>
+        {options.map((option) => (
+          <DropdownMenuCheckboxItem className="cursor-pointer"
+            key={option.value}
+            checked={dropdownValue === option.value}
+            onCheckedChange={() => handleSelect(option.value)}
+          >
+            {option.label}
+          </DropdownMenuCheckboxItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

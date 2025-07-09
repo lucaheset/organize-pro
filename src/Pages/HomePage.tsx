@@ -8,10 +8,10 @@ const HomePage = () => {
   return (
     <div className="w-full">
       <div className="bg-gray-900 p-5">
-        <h1 className="font-semibold text-4xl">Bem vindo de volta, Luca!</h1>
+        <h1 className="font-semibold text-4xl">Welcome Back, Luca!</h1>
 
         <legend className="text-muted-foreground font-semibold">
-          Foco no progresso, não na perfeição.
+          Focus on progress, not perfection.
         </legend>
       </div>
       <div className="bg-gray-950 p-5 rounded-lg grid grid-cols-4 gap-4">
